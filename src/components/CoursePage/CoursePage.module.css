@@ -1,5 +1,27 @@
-.page {
+.page header {
+  height: 80px;
+  background-color: #010552;
+  color: #ffffff;
+  font-size: 36px;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+  position: relative;
+}
+
+header .back {
+  position: absolute;
+  left: 20px;
+}
+
+header .back a {
+  color: #ffffff;
+}
+
+.container {
+  display: flex;
+  padding: 20px;
 }
 
 .list {
@@ -7,7 +29,6 @@
   padding: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
 }
 
 .lesson {
@@ -24,6 +45,11 @@
 .lesson.disabled {
   color: grey;
   cursor: not-allowed;
+}
+
+.lesson.active {
+  background-color: #4945c5;
+  color: #ffffff;
 }
 
 .preview {

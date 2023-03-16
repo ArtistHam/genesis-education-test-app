@@ -1,68 +1,16 @@
 // node_modules
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
-type Courses = {
-  containsLockedLessons: boolean;
-  description: string;
-  duration: number;
-  id: string;
-  launchDate: string;
-  lessonsCount: number;
-  meta: {
-    courseVideoPreview: {
-      duration: number;
-      link: string;
-      previewImageLink: string;
-    };
-    skills: string[];
-    slug: string;
-  };
-  previewImageLink: string;
-  rating: number;
-  status: string;
-  tags: string[];
-  title: string;
-}[];
-
-type Course = {
-  containsLockedLessons: boolean;
-  description: string;
-  duration: number;
-  id: string;
-  launchDate: string;
-  lessons: {
-    duration: number;
-    id: string;
-    link: string;
-    meta: null;
-    order: string;
-    previewImageLink: string;
-    status: string;
-    title: string;
-    type: string;
-  }[];
-  meta: {
-    courseVideoPreview: {
-      duration: number;
-      link: string;
-      previewImageLink: string;
-    };
-    skills: string[];
-    slug: string;
-  };
-  previewImageLink: string;
-  rating: number;
-  status: string;
-  tags: string[];
-  title: string;
-};
+// types
+import { Courses } from "../types/Courses.type";
+import { Course } from "../types/Course.type";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: "http://localhost:8010/proxy/api/v1/core",
+  // baseUrl: "http://api.wisey.app/api/v1/core",
   prepareHeaders: (headers) => {
     headers.set(
       "authorization",
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyMWY2OWUyMC0xMGY2LTQ4YjktODBhYi0xOTA5NzJiMWJmYjMiLCJwbGF0Zm9ybSI6InN1YnNjcmlwdGlvbnMiLCJpYXQiOjE2Nzg4Njk1MjksImV4cCI6MTY3OTc2OTUyOX0.ceQn0PlX4PbQx6X3lIZYG1Qb8w9yAAAV4xGer1E0EtE"
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkOTRlNjg4NS1kM2U5LTQwY2EtYTVjYy01MDRkNjZlZDVlN2QiLCJwbGF0Zm9ybSI6InN1YnNjcmlwdGlvbnMiLCJpYXQiOjE2Nzg3MDQ3NjIsImV4cCI6MTY3OTYwNDc2Mn0.Qw3LF39CDp27ZxoGzt5rikJM_OTx0eNaoyFFLxxrXUM"
     );
   },
 });

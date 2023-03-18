@@ -1,0 +1,30 @@
+.error {
+  background-color: black;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.tooltip {
+  margin-right: 20px;
+  color: #ffffff;
+}
+
+@media screen and (max-width: 860px) {
+  .tooltip {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .tooltip {
+    font-size: 12px;
+  }
+}

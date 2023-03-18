@@ -2,8 +2,10 @@
   margin: 0px;
   padding: 0px;
   text-decoration: none;
+  box-sizing: border-box;
 }
 
 body {
-  background-color: darkgray;
+  background-color: #060606;
+  font-family: "Montserrat", sans-serif;
 }

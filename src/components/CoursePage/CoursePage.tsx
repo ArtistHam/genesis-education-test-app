@@ -17,7 +17,7 @@ import { Course } from "../../types/Course.type";
 
 const CoursePage = () => {
   const { id } = useParams();
-  const { data, error, isSuccess } = useGetCourseQuery(id);
+  const { data, error, isSuccess, isLoading } = useGetCourseQuery(id);
   const [currentLesson, setCurrentLesson] =
     useState<Course["lessons"][number]>();
 
@@ -67,30 +67,46 @@ const CoursePage = () => {
       </header>
       <div className={styles.container}>
         <div className={styles.videoContainer}>
-          <VideoPlayer data={currentLesson} />
+          {isLoading && <div className={styles.videoSkeleton} />}
+          {currentLesson && currentLesson.type !== "video" ? (
+            <div>{"This lesson is not a video :("}</div>
+          ) : (
+            <VideoPlayer
+              data={currentLesson}
+              settings={{ showToolbar: true }}
+              pageId={id}
+              loading={isLoading}
+            />
+          )}
         </div>
         <div className={styles.list}>
-          {data?.lessons.map((lesson) => (
-            <div
-              onClick={chooseLesson(lesson)}
-              className={`${styles.lesson} ${
-                currentLesson && currentLesson.id === lesson.id
-                  ? `${styles.active}`
-                  : ""
-              } ${lesson.status === "unlocked" ? "" : `${styles.disabled}`}`}
-              key={lesson.id}
-            >
-              <div
-                className={styles.preview}
-                style={{
-                  backgroundImage: `url(${lesson.previewImageLink}/lesson-${lesson.order}.webp)`,
-                }}
-              >
-                {lesson.status === "unlocked" ? "" : <MdLockOutline />}
-              </div>
-              <h2>{lesson.title}</h2>
-            </div>
-          ))}
+          {isLoading
+            ? [...Array(5)].map((item, index) => (
+                <div className={styles.itemSkeleton} />
+              ))
+            : data?.lessons.map((lesson) => (
+                <div
+                  onClick={chooseLesson(lesson)}
+                  className={`${styles.lesson} ${
+                    currentLesson && currentLesson.id === lesson.id
+                      ? `${styles.active}`
+                      : ""
+                  } ${
+                    lesson.status === "unlocked" ? "" : `${styles.disabled}`
+                  }`}
+                  key={lesson.id}
+                >
+                  <div
+                    className={styles.preview}
+                    style={{
+                      backgroundImage: `url(${lesson.previewImageLink}/lesson-${lesson.order}.webp)`,
+                    }}
+                  >
+                    {lesson.status === "unlocked" ? "" : <MdLockOutline />}
+                  </div>
+                  <h2>{lesson.title}</h2>
+                </div>
+              ))}
         </div>
       </div>
     </div>

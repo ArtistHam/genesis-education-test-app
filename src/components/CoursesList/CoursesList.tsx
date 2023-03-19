@@ -43,7 +43,7 @@ const CoursesList = () => {
     setCurrentPage(currentPage + 1);
   };
 
-  const handleMouseOver = (id: string) => () => {
+  const handleMouseEnter = (id: string) => () => {
     setHoveredId(id);
   };
 
@@ -91,7 +91,7 @@ const CoursesList = () => {
                   <Link key={course.id} to={`/course/${course.id}`}>
                     <div
                       className={styles.item}
-                      onMouseOver={handleMouseOver(course.id)}
+                      onMouseEnter={handleMouseEnter(course.id)}
                       onMouseLeave={() => setHoveredId(undefined)}
                     >
                       <div

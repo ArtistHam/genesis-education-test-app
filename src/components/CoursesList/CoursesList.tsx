@@ -14,10 +14,14 @@ import { Courses } from "../../types/Courses.type";
 
 const CoursesList = () => {
   const { data, isLoading, isSuccess } = useGetCoursesListQuery();
+
   const [currentPage, setCurrentPage] = useState<number>(0);
-  const [currentCourseList, setCurrentCourseList] = useState<Array<Courses>>([]);
+  const [currentCourseList, setCurrentCourseList] = useState<Array<Courses>>(
+    []
+  );
   const [hoveredId, setHoveredId] = useState<string>();
 
+  // Set last visited page
   useEffect(() => {
     if (isSuccess) {
       const coursePage = localStorage.getItem("coursePage");
@@ -25,6 +29,7 @@ const CoursesList = () => {
     }
   }, [isSuccess]);
 
+  // Pagination
   useEffect(() => {
     if (data && isSuccess) {
       setCurrentCourseList(
@@ -50,6 +55,7 @@ const CoursesList = () => {
   return (
     <div className={styles.page}>
       <header>Courses</header>
+
       <div className={styles.container}>
         <div className={styles.pagination}>
           {isLoading ? (
@@ -59,11 +65,13 @@ const CoursesList = () => {
               {"<"}
             </button>
           )}
+
           {isLoading ? (
             <div className={styles.skeletonPagination} />
           ) : (
             <span>{currentPage + 1}</span>
           )}
+
           {isLoading ? (
             <div className={styles.skeletonPagination} />
           ) : (
@@ -77,9 +85,11 @@ const CoursesList = () => {
             </button>
           )}
         </div>
+
         <div className={styles.listWrapper}>
           {isLoading
-            ? [...Array(10)].map((item, index) => {
+            ? // Skeleton loader
+              [...Array(10)].map((item, index) => {
                 return (
                   <div key={index} className={styles.itemWrapper}>
                     <div className={styles.skeleton} />

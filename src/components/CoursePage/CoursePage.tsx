@@ -16,6 +16,7 @@ import { Course } from "../../types/Course.type";
 const CoursePage = () => {
   const { id } = useParams();
   const { data, isSuccess, isLoading } = useGetCourseQuery(id);
+
   const [currentLesson, setCurrentLesson] =
     useState<Course["lessons"][number]>();
 
@@ -25,6 +26,7 @@ const CoursePage = () => {
     }
   };
 
+  // Save current lesson
   useEffect(() => {
     if (data && currentLesson) {
       localStorage.setItem(`c-${data?.id}`, `${currentLesson?.id}`);
@@ -61,9 +63,11 @@ const CoursePage = () => {
 
         {data ? data.title : "Title is loading..."}
       </header>
+
       <div className={styles.container}>
         <div className={styles.videoContainer}>
           {isLoading && <div className={styles.videoSkeleton} />}
+
           {currentLesson && currentLesson.type !== "video" ? (
             <div>{"This lesson is not a video :("}</div>
           ) : (
@@ -75,6 +79,7 @@ const CoursePage = () => {
             />
           )}
         </div>
+
         <div className={styles.list}>
           {isLoading
             ? [...Array(5)].map((item, index) => (
@@ -100,6 +105,7 @@ const CoursePage = () => {
                   >
                     {lesson.status === "unlocked" ? "" : <MdLockOutline />}
                   </div>
+
                   <h2>{lesson.title}</h2>
                 </div>
               ))}

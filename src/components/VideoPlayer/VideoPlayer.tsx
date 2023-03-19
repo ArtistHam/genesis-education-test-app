@@ -35,7 +35,7 @@ const VideoPlayer: React.FC<IVideoPlayerProps> = ({
 
   const hls = new Hls();
 
-  // save lesson time at localStorage
+  // save lesson time at localStorage when leave page
   useLayoutEffect(() => {
     return () => {
       if (data && ref.current) {
@@ -57,6 +57,7 @@ const VideoPlayer: React.FC<IVideoPlayerProps> = ({
     }
   };
 
+  // event listener for keyboard shortcuts
   useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
 
@@ -80,7 +81,7 @@ const VideoPlayer: React.FC<IVideoPlayerProps> = ({
       hls.on(Hls.Events.MANIFEST_PARSED, function () {
         if (video) {
           video.currentTime = savedTimeStamp ? +savedTimeStamp : 0;
-          video.volume = 0.3;
+          video.volume = 0.3; // this will save your ears ^.^
         }
       });
 
@@ -92,6 +93,7 @@ const VideoPlayer: React.FC<IVideoPlayerProps> = ({
     }
   }, [data]);
 
+  // Picture-in-Picture
   const enablePiP = () => {
     const video = ref.current;
     if (video) {
@@ -177,9 +179,12 @@ const VideoPlayer: React.FC<IVideoPlayerProps> = ({
               {settings?.showToolbar ? (
                 <div className={styles.toolbar}>
                   <div className={styles.tooltip}>
-                    To change speed use &quot;<code>{"Shift + <"}</code>&quot; or &quot;
-                    <code>{"Shift + >"}</code>&quot;. Current speed is: {playBack}x
+                    To change speed use &quot;<code>{"Shift + <"}</code>&quot;
+                    or &quot;
+                    <code>{"Shift + >"}</code>&quot;. Current speed is:{" "}
+                    {playBack}x
                   </div>
+
                   {"pictureInPictureEnabled" in document &&
                     document.pictureInPictureEnabled && (
                       <button onClick={enablePiP}>Picture-in-Picture</button>

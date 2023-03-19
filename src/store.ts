@@ -1,5 +1,5 @@
 // node_modules
-import { configureStore, MiddlewareArray } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 // services
 import { courseApi } from "./services/course.service";
 

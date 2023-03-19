@@ -13,9 +13,9 @@ import { MdStarRate } from "react-icons/md";
 import { Courses } from "../../types/Courses.type";
 
 const CoursesList = () => {
-  const { data, error, isLoading, isSuccess } = useGetCoursesListQuery();
+  const { data, isLoading, isSuccess } = useGetCoursesListQuery();
   const [currentPage, setCurrentPage] = useState<number>(0);
-  const [currentCourseList, setCurrentCourseList] = useState<Courses>([]);
+  const [currentCourseList, setCurrentCourseList] = useState<Array<Courses>>([]);
   const [hoveredId, setHoveredId] = useState<string>();
 
   useEffect(() => {
@@ -81,13 +81,13 @@ const CoursesList = () => {
           {isLoading
             ? [...Array(10)].map((item, index) => {
                 return (
-                  <div className={styles.itemWrapper}>
+                  <div key={index} className={styles.itemWrapper}>
                     <div className={styles.skeleton} />
                   </div>
                 );
               })
-            : currentCourseList.map((course: any) => (
-                <div className={styles.itemWrapper}>
+            : currentCourseList.map((course: Courses) => (
+                <div key={course.id} className={styles.itemWrapper}>
                   <Link key={course.id} to={`/course/${course.id}`}>
                     <div
                       className={styles.item}

@@ -1,9 +1,7 @@
 // node_modules
-import React, { useEffect, useState, useLayoutEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-// @ts-ignore
-import Hls from "hls.js"; /* don't have declaration file */
 // components
 import VideoPlayer from "../VideoPlayer";
 // services
@@ -17,7 +15,7 @@ import { Course } from "../../types/Course.type";
 
 const CoursePage = () => {
   const { id } = useParams();
-  const { data, error, isSuccess, isLoading } = useGetCourseQuery(id);
+  const { data, isSuccess, isLoading } = useGetCourseQuery(id);
   const [currentLesson, setCurrentLesson] =
     useState<Course["lessons"][number]>();
 
@@ -48,11 +46,9 @@ const CoursePage = () => {
     }
   }, [data, isSuccess]);
 
-  const chooseLesson =
-    (lesson: Course["lessons"][number]) =>
-    (e: React.MouseEvent<HTMLElement>) => {
-      setCurrentLesson(lesson);
-    };
+  const chooseLesson = (lesson: Course["lessons"][number]) => () => {
+    setCurrentLesson(lesson);
+  };
 
   return (
     <div className={styles.page}>
@@ -82,7 +78,7 @@ const CoursePage = () => {
         <div className={styles.list}>
           {isLoading
             ? [...Array(5)].map((item, index) => (
-                <div className={styles.itemSkeleton} />
+                <div key={index} className={styles.itemSkeleton} />
               ))
             : data?.lessons.map((lesson) => (
                 <div

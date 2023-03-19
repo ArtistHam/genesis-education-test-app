@@ -32,6 +32,7 @@ As a framework this project use **React**, because of performance, reactivity an
 In addition to React project use **react-router** for SPA routes, **Redux Toolkit** for store management, **RTK Query** for AJAX and **hls.js** for m3u8 video processing.
 
 As a bundler project use **WebPack** (custom config).<br/>
+For static analyze project use **ESLint**.<br/>
 To style components project use **CSS modules**.<br/>
 As icons library **react-icons** used.
 

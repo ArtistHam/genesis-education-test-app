@@ -18,9 +18,9 @@ export const courseApi = createApi({
   reducerPath: "courseApi",
   baseQuery: baseQuery,
   endpoints: (builder) => ({
-    getCoursesList: builder.query<Courses, void>({
+    getCoursesList: builder.query<Courses[], void>({
       query: () => "/preview-courses",
-      transformResponse: (response: { courses: Courses }) => response.courses,
+      transformResponse: (response: { courses: Courses[] }) => response.courses,
     }),
 
     getCourse: builder.query<Course, string | undefined>({

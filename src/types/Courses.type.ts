@@ -19,4 +19,4 @@ export type Courses = {
   status: string;
   tags: string[];
   title: string;
-}[];
+};

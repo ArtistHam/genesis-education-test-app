@@ -1,8 +1,7 @@
 // node_modules
 import React, { useRef, useState, useEffect, useLayoutEffect } from "react";
 import { useNavigate } from "react-router-dom";
-// @ts-ignore
-import Hls from "hls.js"; /* don't have declaration file */
+import Hls from "hls.js";
 // styles
 import styles from "./VideoPlayer.module.css";
 
@@ -34,7 +33,7 @@ const VideoPlayer: React.FC<IVideoPlayerProps> = ({
   const [error, setError] = useState<boolean>(false);
   const [playBack, setPlayBack] = useState<number>(1);
 
-  let hls = new Hls();
+  const hls = new Hls();
 
   // save lesson time at localStorage
   useLayoutEffect(() => {
@@ -49,7 +48,7 @@ const VideoPlayer: React.FC<IVideoPlayerProps> = ({
   }, [data]);
 
   // save lesson time if page refreshed
-  window.onbeforeunload = function (e) {
+  window.onbeforeunload = function () {
     if (ref.current) {
       localStorage.setItem(
         `l-${data?.id}`,
@@ -117,9 +116,9 @@ const VideoPlayer: React.FC<IVideoPlayerProps> = ({
   }, [playBack]);
 
   const handleKeyDown = (e: KeyboardEvent) => {
+    const video = ref.current;
     switch (e.code) {
       case "Space":
-        const video = ref.current;
         if (video) {
           if (video.paused) {
             video.play();
@@ -178,8 +177,8 @@ const VideoPlayer: React.FC<IVideoPlayerProps> = ({
               {settings?.showToolbar ? (
                 <div className={styles.toolbar}>
                   <div className={styles.tooltip}>
-                    To change speed use "<code>{"Shift + <"}</code>" or "
-                    <code>{"Shift + >"}</code>". Current speed is: {playBack}x
+                    To change speed use &quot;<code>{"Shift + <"}</code>&quot; or &quot;
+                    <code>{"Shift + >"}</code>&quot;. Current speed is: {playBack}x
                   </div>
                   {"pictureInPictureEnabled" in document &&
                     document.pictureInPictureEnabled && (

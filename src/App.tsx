@@ -1,6 +1,6 @@
 // node_modules
 import React from "react";
-import { useRoutes, Link } from "react-router-dom";
+import { useRoutes } from "react-router-dom";
 // routes
 import routes from "./routes";
 

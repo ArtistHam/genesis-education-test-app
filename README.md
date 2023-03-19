@@ -4,7 +4,7 @@
 
 - [Setup Project](#setup-project)
 - [Used Technologies](#used-technologies)
-- [Technical task and it's completion progress](#technical-task-and-it-s-completion-progress)
+- [Technical task and it's completion progress](#technical-task-and-its-completion-progress)
   <br/>
   <br/>
   <br/>

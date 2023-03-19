@@ -5,8 +5,7 @@ import { Courses } from "../types/Courses.type";
 import { Course } from "../types/Course.type";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://localhost:8010/proxy/api/v1/core",
-  // baseUrl: "http://api.wisey.app/api/v1/core",
+  baseUrl: "https://api.wisey.app/api/v1/core",
   prepareHeaders: (headers) => {
     headers.set(
       "authorization",

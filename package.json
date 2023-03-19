@@ -4,11 +4,8 @@
   "description": "test task for genesis",
   "main": "index.js",
   "scripts": {
-    "start": "npm-run-all -r -p proxy dev ",
-    "dev": "webpack serve --port 3000",
-    "build": "NODE_ENV=production webpack",
-    "proxy": "lcp --proxyUrl https://api.wisey.app",
-    "static-proxy": "static-proxy -u api.wisey.app -f public,assets,otherFolder -p 3001 -P http -v"
+    "start": "webpack serve --port 3000",
+    "build": "NODE_ENV=production webpack"
   },
   "author": "Artist149",
   "license": "ISC",
@@ -27,10 +24,7 @@
     "@types/react-dom": "^18.0.11",
     "css-loader": "^6.7.3",
     "html-webpack-plugin": "^5.5.0",
-    "local-cors-proxy": "^1.1.0",
     "mini-css-extract-plugin": "^2.7.3",
-    "npm-run-all": "^4.1.5",
-    "static-proxy": "^0.1.12",
     "style-loader": "^3.3.2",
     "ts-loader": "^9.4.2",
     "typescript": "^4.9.5",
